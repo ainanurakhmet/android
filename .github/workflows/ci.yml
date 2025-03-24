@@ -21,7 +21,7 @@ jobs:
         with:
           java-version: '17'
           java-package: 'jdk'
-          distribution: 'adoptopenjdk'
+          distribution: 'temurin'
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
