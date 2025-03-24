@@ -20,16 +20,16 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          java-package: 'jdk'
+          distribution: 'adoptopenjdk'
 
-      # Временно отключите кэширование, чтобы увидеть, работает ли пайплайн без него
-      # - name: Cache Gradle dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ~/.gradle/caches
-      #     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-gradle-
-
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
         run: ./gradlew build --no-daemon
